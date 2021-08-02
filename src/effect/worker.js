@@ -8,7 +8,7 @@ function* workerlist(action){
         const response = yield call(axios.get,url)
         console.log("worker",response)
         console.log("calling fetchusersuccess")
-        yield delay(1000)
+        // yield delay(1000)
         yield put(fetchusersuccess(response.data.results))
     } catch (error) {
         console.log("calling fetchuserfailure")

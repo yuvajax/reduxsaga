@@ -22,7 +22,6 @@ function userreducer(state = initialstate,action){
             console.log("fetchusersuccess called")
             console.log(state.loading,state.user)
             return{
-                ...state,
                 loading:false,
                 user:action.payload,
                 error:''
@@ -31,7 +30,6 @@ function userreducer(state = initialstate,action){
                 console.log("fetchuserfailure called")
                 console.log(state.loading,state.user)
                 return{
-                    ...state,
                     loading:false,
                     user:[],
                     error: action.payload

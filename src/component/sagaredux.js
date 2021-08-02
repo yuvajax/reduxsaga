@@ -1,10 +1,13 @@
-import React,{useEffect} from 'react';
-import {fetchuserrequest} from '../actions/sagaactions';
+import React,{useState,useEffect} from 'react';
+import {fetchuserrequest,fetchusersuccess} from '../actions/sagaactions';
 import { useSelector, useDispatch }  from 'react-redux'
 import Cardsaga from './Cardsaga';
 import './sagaredux.css'
 
 function Sagaredux() {
+
+    const [states,setStates] = useState([])
+    const [user,setUser] = useState([])
 
     const loading = useSelector(state => state.reducer.loading)
     console.log(loading)
@@ -12,9 +15,28 @@ function Sagaredux() {
     console.log("userdetail",usedetail)
     const dispatch = useDispatch()
 
+    
     useEffect(() => {
         dispatch(fetchuserrequest())
     },[]);
+
+    useEffect(() => {
+        setStates(usedetail)
+        console.log("states",states)
+        setUser(usedetail)
+    },[usedetail]);
+
+
+    const changehandle = (e) =>{
+        const value = e.target.value;
+        const filtered = user.filter((item) =>{
+            return `${item.name.first} ${item.name.last}`.toLowerCase()
+            .includes(value.toLowerCase())
+            console.log("3",filtered) 
+        })
+         setStates(filtered)      
+    }
+
 
     if(loading){
         return (
@@ -29,10 +51,10 @@ function Sagaredux() {
         <div className='userapiheader'>
             <div className='user-inner'>
             <h1>USER CARD</h1>
-            {/* <input type="text"  placeholder="search..." /> */}
+            <input type="text"  placeholder="search..." onChange={changehandle} />
             </div>
             <div className="userapi">
-            {usedetail.map((users, index) => (
+            {states.map((users, index) => (
                 <Cardsaga users={users} key={index}/>
             ))}
             </div>

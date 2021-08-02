@@ -15,7 +15,7 @@
     background-color: antiquewhite;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-/* .user-inner input{
+.user-inner input{
     border:none;
     margin-left: 40%;
     justify-content: center;
@@ -24,7 +24,7 @@
     padding: 10px;
     color: #111;
     background: rgba(255 ,255 ,255 ,0.1);
-} */
+}
 .user-inner h1{
     color: gray;
     justify-content: center;
